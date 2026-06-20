@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boda de Mafer y Víctor</title>
+
+<style>
+body{
+    font-family: Georgia, serif;
+    text-align:center;
+    padding:40px;
+    background:#f5f5f5;
+}
+
+.caja{
+    background:white;
+    padding:30px;
+    max-width:500px;
+    margin:auto;
+    border-radius:15px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+button{
+    margin-top:15px;
+    padding:10px 20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="caja">
+
+<h2>Boda de Mafer y Víctor</h2>
+
+<h3 id="nombre">Cargando...</h3>
+
+<p id="pases"></p>
+
+<select id="asistentes"></select>
+
+<br>
+
+<button onclick="confirmar()">Confirmar asistencia</button>
+
+<p id="mensaje"></p>
+
+</div>
+
+<script>
+
+let invitados = {
+  "M001": { nombre: "Mafer Barragan", pases: 1 },
+  "M002": { nombre: "Blanca Vega", pases: 1 }
+};
+
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+
+if(invitados[id]){
+
+    document.getElementById("nombre").innerText = invitados[id].nombre;
+
+    document.getElementById("pases").innerText =
+    "Tienes " + invitados[id].pases + " pase(s)";
+
+    let select = document.getElementById("asistentes");
+
+    for(let i=0;i<=invitados[id].pases;i++){
+        let option = document.createElement("option");
+        option.value = i;
+        option.text = i;
+        select.appendChild(option);
+    }
+
+}else{
+    document.getElementById("nombre").innerText =
+    "Invitación no encontrada";
+}
+
+function confirmar(){
+    let cantidad = document.getElementById("asistentes").value;
+
+    document.getElementById("mensaje").innerText =
+    "Confirmado: " + cantidad + " persona(s)";
+}
+
+</script>
+
+</body>
+</html>
