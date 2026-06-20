@@ -5,27 +5,98 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Boda de Mafer y Víctor</title>
 
+<!-- ✨ FUENTE ELEGANTE -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
+
 body{
-    font-family: Georgia, serif;
+    margin:0;
+    padding:0;
+    background: linear-gradient(135deg, #f7f3ef, #ffffff);
+    font-family: 'Cormorant Garamond', serif;
     text-align:center;
-    padding:40px;
-    background:#f5f5f5;
+    color:#3b3b3b;
 }
 
+/* 💍 CAJA PRINCIPAL */
 .caja{
+    max-width:600px;
+    margin:60px auto;
     background:white;
-    padding:30px;
-    max-width:500px;
-    margin:auto;
-    border-radius:15px;
-    box-shadow:0 0 10px rgba(0,0,0,0.1);
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    border:1px solid #e8e2db;
 }
 
-button{
-    margin-top:15px;
-    padding:10px 20px;
+/* ✨ TITULOS */
+h1{
+    font-family:'Playfair Display', serif;
+    font-weight:400;
+    font-size:20px;
+    letter-spacing:2px;
+    color:#7a6f66;
+    margin-bottom:5px;
+    text-transform:uppercase;
 }
+
+h2{
+    font-family:'Playfair Display', serif;
+    font-size:38px;
+    margin:10px 0;
+    color:#2f2f2f;
+}
+
+h3{
+    font-family:'Cormorant Garamond', serif;
+    font-size:22px;
+    font-weight:400;
+    color:#7a6f66;
+    margin-top:0;
+}
+
+/* 💌 TEXTO */
+p{
+    font-size:18px;
+    margin:10px 0;
+}
+
+/* 🎀 SELECT */
+select{
+    padding:12px;
+    width:120px;
+    border-radius:10px;
+    border:1px solid #d6cfc8;
+    margin-top:10px;
+    font-size:16px;
+}
+
+/* 💍 BOTÓN */
+button{
+    margin-top:20px;
+    padding:12px 25px;
+    border:none;
+    border-radius:30px;
+    background:#7a6f66;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#5f564e;
+    transform:translateY(-2px);
+}
+
+/* 💕 MENSAJE */
+#mensaje{
+    margin-top:20px;
+    font-size:18px;
+    color:#5a5a5a;
+}
+
 </style>
 </head>
 
@@ -33,11 +104,17 @@ button{
 
 <div class="caja">
 
-<h2>Boda de Mafer y Víctor</h2>
+<h1>Boda de</h1>
+<h2>Mafer & Víctor</h2>
+<h3>Invitación especial</h3>
 
-<h3 id="nombre">Cargando...</h3>
+<hr style="width:60px; border:1px solid #d6cfc8; margin:20px auto;">
+
+<h2 id="nombre">Cargando invitación...</h2>
 
 <p id="pases"></p>
+
+<p>¿Cuántas personas asistirán?</p>
 
 <select id="asistentes"></select>
 
@@ -52,8 +129,8 @@ button{
 <script>
 
 let invitados = {
-  "M001": { nombre: "Mafer Barragan", pases: 1 },
-  "M002": { nombre: "Blanca Vega", pases: 1 }
+    "M001": { nombre: "Mafer Barragan", pases: 1 },
+    "M002": { nombre: "Blanca Vega", pases: 2 }
 };
 
 const params = new URLSearchParams(window.location.search);
@@ -64,9 +141,10 @@ if(invitados[id]){
     document.getElementById("nombre").innerText = invitados[id].nombre;
 
     document.getElementById("pases").innerText =
-    "Tienes " + invitados[id].pases + " pase(s)";
+    "Hemos reservado " + invitados[id].pases + " lugar(es) para ti";
 
     let select = document.getElementById("asistentes");
+    select.innerHTML = "";
 
     for(let i=0;i<=invitados[id].pases;i++){
         let option = document.createElement("option");
@@ -81,10 +159,11 @@ if(invitados[id]){
 }
 
 function confirmar(){
+
     let cantidad = document.getElementById("asistentes").value;
 
     document.getElementById("mensaje").innerText =
-    "Confirmado: " + cantidad + " persona(s)";
+    "Gracias por confirmar 💍 Te esperamos con mucho cariño";
 }
 
 </script>
